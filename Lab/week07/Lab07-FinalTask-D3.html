@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Temperature Forecast - D3.js</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .line {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .axis-label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .legend text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="title">Weekly Temperature Forecast in College Station</h2>
+    <svg width="900" height="500"></svg>
+
+    <script>
+        const data = [
+            { day: "Sat", highest: 82, lowest: 67 },
+            { day: "Sun", highest: 81, lowest: 59 },
+            { day: "Mon", highest: 81, lowest: 50 },
+            { day: "Tue", highest: 70, lowest: 47 },
+            { day: "Wed", highest: 77, lowest: 51 },
+            { day: "Thu", highest: 78, lowest: 60 },
+            { day: "Fri", highest: 79, lowest: 66 },
+            { day: "Sat.", highest: 80, lowest: 66 }
+        ];
+
+        const margin = { top: 40, right: 50, bottom: 50, left: 60 },
+            width = 800 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        const svg = d3.select("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Scales
+        const x = d3.scalePoint()
+            .domain(data.map(d => d.day))
+            .range([0, width])
+            .padding(0.5);
+
+        const y = d3.scaleLinear()
+            .domain([45, 85])
+            .range([height, 0]);
+
+        // Line generators with defined() to prevent incorrect connections
+        const lineHigh = d3.line()
+            .defined(d => d.highest !== null)
+            .x(d => x(d.day))
+            .y(d => y(d.highest))
+            .curve(d3.curveMonotoneX);
+
+        const lineLow = d3.line()
+            .defined(d => d.lowest !== null)
+            .x(d => x(d.day))
+            .y(d => y(d.lowest))
+            .curve(d3.curveMonotoneX);
+
+        // Draw lines
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
+            .attr("fill", "none")
+            .attr("d", lineHigh);
+
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("stroke", "orange")
+            .attr("stroke-width", 2)
+            .attr("fill", "none")
+            .attr("d", lineLow);
+
+        // X-axis
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x));
+
+        // Y-axis
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // Axis labels
+        svg.append("text")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 15)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .attr("class", "axis-label")
+            .text("Temperature (°F)");
+
+        // Data points
+        svg.selectAll(".dot-high")
+            .data(data)
+            .enter().append("circle")
+            .attr("cx", d => x(d.day))
+            .attr("cy", d => y(d.highest))
+            .attr("r", 4)
+            .attr("fill", "steelblue");
+
+        svg.selectAll(".dot-low")
+            .data(data)
+            .enter().append("circle")
+            .attr("cx", d => x(d.day))
+            .attr("cy", d => y(d.lowest))
+            .attr("r", 4)
+            .attr("fill", "orange");
+
+        // Legend
+        const legend = svg.append("g")
+            .attr("transform", `translate(${width / 2 - 50},${height + 36})`);
+
+        legend.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", 15)
+            .attr("height", 10)
+            .attr("fill", "steelblue");
+
+        legend.append("text")
+            .attr("x", 20)
+            .attr("y", 10)
+            .text("Highest")
+            .attr("fill", "black");
+
+        legend.append("rect")
+            .attr("x", 100)
+            .attr("y", 0)
+            .attr("width", 15)
+            .attr("height", 10)
+            .attr("fill", "orange");
+
+        legend.append("text")
+            .attr("x", 120)
+            .attr("y", 10)
+            .text("Lowest")
+            .attr("fill", "black");
+
+    </script>
+
+</body>
+
+</html>
