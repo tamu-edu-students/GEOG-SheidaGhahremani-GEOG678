@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Influenza Hospitalization Rates by Age Group</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="MainStyle.css">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html"><img src="images/tamu-logo.png" alt="Texas A&M Logo" class="logo"></a>
+        <a href="Home.html">Home</a>
+        <a href="vaccination-centers.html">Vaccination Centers</a>
+        <a href="direction.html">Direction</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="people.html">People</a>
+    </div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="MainStyle.css">
+
+    <iframe src="https://www.arcgis.com/apps/dashboards/b5973947803e42a4a62fea3983206e9d" width="100%"
+        height="500px"></iframe>
+    <div id="container" style="height: 600px; width: 100%;"></div>
+
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Influenza Hospitalization Rates by Age Group'
+            },
+            xAxis: {
+                categories: [
+                    '2024-11-02', '2024-11-09', '2024-11-16', '2024-11-23', '2024-11-30',
+                    '2024-12-07', '2024-12-14', '2024-12-21', '2024-12-28', '2025-01-04',
+                    '2025-01-11', '2025-01-18', '2025-01-25', '2025-02-01', '2025-02-08',
+                    '2025-02-15', '2025-02-22', '2025-03-01', '2025-03-08', '2025-03-15',
+                    '2025-03-22', '2025-03-29', '2025-04-05'
+                ],
+                title: {
+                    text: 'Week Ending'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Hospitalization Rate (per 100,000 population)'
+                }
+            },
+            series: [
+                {
+                    name: 'Ages 0–4',
+                    data: [0.5, 0.8, 1.0, 1.4, 1.3, 2.1, 3.4, 4.5, 7.1, 10.0, 6.0, 6.6, 9.9, 13.3, 13.0, 10.1, 5.7, 3.8, 3.4, 2.8, 1.8, 1.4, 1.2]
+                },
+                {
+                    name: 'Ages 5–17',
+                    data: [0.1, 0.2, 0.2, 0.4, 0.4, 0.8, 0.8, 1.7, 1.8, 1.5, 1.4, 2.4, 3.6, 5.0, 4.4, 2.7, 2.0, 1.4, 1.1, 0.9, 0.6, 0.5, 0.3]
+                },
+                {
+                    name: 'Ages 18–49',
+                    data: [0.2, 0.3, 0.3, 0.4, 0.6, 0.8, 1.1, 1.6, 3.0, 3.4, 2.8, 3.3, 4.7, 6.5, 5.5, 3.2, 2.2, 2.0, 1.4, 1.0, 0.7, 0.7, 0.4]
+                },
+                {
+                    name: 'Ages 50–64',
+                    data: [0.3, 0.5, 0.7, 1.0, 1.2, 1.6, 2.4, 4.4, 6.6, 9.1, 8.2, 8.9, 11.6, 16.4, 13.5, 8.0, 6.1, 4.9, 4.0, 2.8, 1.8, 1.8, 1.2]
+                },
+                {
+                    name: 'Ages 65+',
+                    data: [0.9, 1.8, 2.1, 2.6, 4.2, 5.1, 6.8, 11.0, 22.5, 27.2, 22.2, 26.8, 35.7, 52.3, 48.8, 28.2, 20.0, 18.5, 13.6, 10.5, 7.1, 6.0, 4.0]
+                }
+            ]
+        });
+    </script>
+</body>
+
+</html>
