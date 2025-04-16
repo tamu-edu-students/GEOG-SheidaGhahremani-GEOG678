@@ -20,5 +20,3 @@ A web mapp built that displays campus buildings at **Texas A&M University**. Thi
 - **Zoom Level:** 13
 - **Data Source:**  
   [Campus_Building Feature Service](https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/Campus_Building/FeatureServer)
-
-git clone https://github.com/your-username/tamu-campus-map.git
