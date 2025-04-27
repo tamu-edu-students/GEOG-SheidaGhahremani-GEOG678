@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flu Vaccination Centers Locator - Brazos County, TX</title>
+    <link rel="stylesheet" href="MainStyle.css">
+    <style>
+        .background-container {
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            background: url('images/Flu Vaccination Centers.png') center/cover no-repeat;
+        }
+
+        .background-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            z-index: 1;
+        }
+
+        .flu-info,
+        .flu-vaccine {
+            width: 80%;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            margin: 20px 0;
+            z-index: 2;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(31, 6, 6, 0.1);
+            list-style-position: inside;
+        }
+
+        .flu-info h2,
+        .flu-vaccine h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="index.html"><img src="images/tamu-logo.png" alt="Texas A&M Logo" class="logo"></a>
+        <a href="Home.html" class="active">Home</a>
+        <a href="vaccination-centers.html">Vaccination Centers</a>
+        <a href="direction.html">Direction</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="people.html">People</a>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to Flu Vaccination Centers Locator</h1>
+        <p>Find vaccination centers easily across Brazos County, TX!</p>
+
+    </div>
+
+    <div class="background-container">
+        <div class="flu-info">
+            <h2>Influenza (Flu) Vaccination</h2>
+            <p>The CDC recommends that everyone six months of age and older get the flu vaccine every season. In
+                addition to
+                the flu vaccine for adults, teens, and children, there are flu vaccines approved for different groups:
+
+
+            <ul>
+                <li>women</li>
+                <li>Older adults (65 years and older)</li>
+                <li>children</li>
+                <li>People with chronic conditions</li>
+            </ul>
+
+            <br>The flu vaccine is especially important for people with chronic health conditions and those who have
+            a
+            highrisk of developing complications from the flu. If you have questions about which vaccine is best for
+            you,talk to your doctor or other healthcare professional.</br>
+
+            <br><strong>infants younger than six months cannot be vaccinated against the flu, it’s crucial that the
+                people
+                around them get the flu shot for the baby’s health.</strong><br>
+
+            It cannot be said often enough the flu shot does not cause flu illness.
+            </p>
+        </div>
+
+        <div class="flu-vaccine">
+            <h2>Where Can I Get a Flu Vaccine?</h2>
+            <p>Flu vaccines are offered in many doctor’s offices and clinics. Even if you don’t have a regular doctor or
+                nurse, you can get a flu vaccine somewhere else like a health department, pharmacy, urgent care clinic,
+                college health center, and even in some schools and workplaces.
+
+                To find a flu vaccine near you, please visit "Vaccination Centers and Direction tabs.</p>
+        </div>
+    </div>
+</body>
+
+</html>

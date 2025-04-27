@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Two-Point Map Route Planner</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="MainStyle.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+    <script src="https://unpkg.com/lrm-mapbox"></script>
+    <style>
+        #map {
+            height: 500px;
+            margin-top: 10px;
+            height: 500px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #controls {
+            margin: 10px;
+        }
+
+        #travel-mode {
+            padding: 8px 12px;
+            margin-right: 5px;
+            background-color: #3d0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            height: 35px;
+        }
+
+        .search-container {
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 8px;
+            margin-right: 5px;
+        }
+
+        #suggestions-start,
+        #suggestions-end {
+            background: white;
+            border: 1px solid #ccc;
+            width: 300px;
+            position: absolute;
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .suggestion-item:hover {
+            background: #f0f0f0;
+
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-right: 5px;
+            background-color: #500000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .controls input,
+        .controls button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .controls button {
+            background-color: #500000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: #3d0000;
+        }
+
+        .controls input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .navbar {
+            gap: 50px;
+
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+            }
+
+            .navbar a {
+                padding: 8px 12px;
+                font-size: 16px;
+            }
+
+            #map {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="navbar-links">
+            <a href="index.html"><img src="images/tamu-logo.png" alt="Texas A&M Logo" class="logo"></a>
+            <a href="Home.html">Home</a>
+            <a href="vaccination-centers.html">Vaccination Centers</a>
+            <a href="direction.html" class="active">Direction</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="people.html">People</a>
+        </div>
+    </div>
+
+
+
+    <div id="controls">
+
+
+        <div class="search-container">
+            <input type="text" id="search-start" placeholder="Search start location..."
+                onkeyup="getSuggestions('start')" />
+            <div id="suggestions-start"></div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-end" placeholder="Search destination..." onkeyup="getSuggestions('end')" />
+            <div id="suggestions-end"></div>
+        </div>
+
+        <div style="position: absolute; top: 135px; left: 350px; z-index: 1000; ">
+            <button onclick="swapPoints()">🔄</button>
+        </div>
+
+        <select id="travel-mode">
+            <option value="driving">Driving</option>
+            <option value="walking">Walking</option>
+        </select>
+        <button onclick="findMyLocation()">📍 My Location</button>
+        <button onclick="showRoute()">Direction</button>
+        <button onclick="clearSearch()">Clear</button>
+    </div>
+    <div style="margin: 10px; position: absolute; top: 190px; left: 380px; z-index: 1000;">
+        <button onclick="setSelectMode('start')">Set Start by Clicking</button>
+        <button onclick="setSelectMode('end')">Set End by Clicking</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        const brazosCenter = [30.653, -96.340];
+        const viewbox = "-96.5594,30.9887,-96.1485,30.4920";
+
+        let start = null;
+        let end = null;
+        let startMarker = null;
+        let endMarker = null;
+        let routingControl = null;
+        let centers = [];
+
+        const map = L.map("map").setView(brazosCenter, 12);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "© OpenStreetMap contributors"
+        }).addTo(map);
+
+        // Load vaccination centers
+        fetch("vaccinationcenters.json")
+            .then(res => res.json())
+            .then(data => {
+                centers = data;
+            });
+
+        function getSuggestions(type) {
+            const input = document.getElementById(`search-${type}`);
+            const query = input.value.trim().toLowerCase();
+            const suggestionsBox = document.getElementById(`suggestions-${type}`);
+            suggestionsBox.innerHTML = "";
+
+            if (query.length < 2) return;
+
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&bounded=1&viewbox=${viewbox}&limit=5&accept-language=en`;
+
+            fetch(url)
+                .then(res => res.json())
+                .then(osmResults => {
+                    const localResults = centers.filter(center =>
+                        center.name.toLowerCase().includes(query)
+                    ).map(center => ({
+                        source: "local",
+                        name: center.name,
+                        display_name: `${center.name}, ${center.address}`,
+                        lat: center.latitude,
+                        lon: center.longitude,
+                        data: center
+                    }));
+
+                    const osmMapped = osmResults.map(place => ({
+                        source: "osm",
+                        name: place.display_name,
+                        display_name: place.display_name,
+                        lat: parseFloat(place.lat),
+                        lon: parseFloat(place.lon)
+                    }));
+
+                    const combined = [...localResults, ...osmMapped];
+
+                    combined.forEach(item => {
+                        const div = document.createElement("div");
+                        div.className = "suggestion-item";
+                        div.textContent = item.display_name;
+                        div.onclick = () => {
+                            if (type === "start") {
+                                start = [item.lat, item.lon];
+                                if (startMarker) map.removeLayer(startMarker);
+                                startMarker = L.marker(start, { icon: L.icon({ iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png", iconSize: [32, 32] }) })
+                                    .addTo(map)
+                                    .bindPopup("Start Point").openPopup();
+                                map.setView(start, 14);
+                            } else {
+                                end = [item.lat, item.lon];
+                                if (endMarker) map.removeLayer(endMarker);
+
+                                let popupContent = "Destination";
+                                if (item.source === "local" && item.data) {
+                                    const c = item.data;
+                                    popupContent = `
+                  <b>${c.name}</b><br/>
+                  <b>Address:</b> ${c.address}<br/>
+                  <b>Hours:</b> ${c.hours}<br/>
+                  <b>Phone:</b> <a href="tel:${c.phone}">${c.phone}</a><br/>
+                  <b>Website:</b> <a href="${c.website}" target="_blank">Visit Site</a>
+                `;
+                                }
+
+                                endMarker = L.marker(end, { icon: L.icon({ iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png", iconSize: [32, 32] }) })
+                                    .addTo(map)
+                                    .bindPopup(popupContent).openPopup();
+                                map.setView(end, 14);
+                            }
+
+                            input.value = item.display_name;
+                            suggestionsBox.innerHTML = "";
+                        };
+                        suggestionsBox.appendChild(div);
+                    });
+                });
+        }
+
+        function showRoute() {
+            if (!start || !end) {
+                alert("Please select both start and destination points.");
+                return;
+            }
+
+            const mode = document.getElementById("travel-mode").value; // 'driving' or 'walking'
+            const accessToken = 'pk.eyJ1Ijoic2hlaWRhZ2hhaHJlbWFuaSIsImEiOiJjbTljNmQ4MDQwbnF1Mm9vZGlwcXg4Y2MxIn0.SdzSFh6R2JzME0CBNZjJzw';
+
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+            console.log("Routing mode:", `mapbox/${mode}`);
+
+            const mapboxRouter = L.Routing.mapbox(accessToken, {
+                profile: `mapbox/${mode}`, // 'mapbox/driving' or 'mapbox/walking'
+                language: 'en',
+                alternatives: false,
+                steps: true,
+                overview: 'full'
+            });
+
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(start[0], start[1]),
+                    L.latLng(end[0], end[1])
+                ],
+                router: mapboxRouter,
+                lineOptions: {
+                    styles: [{ color: mode === 'driving' ? 'blue' : 'green', opacity: 0.8, weight: 5 }]
+                },
+                createMarker: () => null,
+                routeWhileDragging: false,
+                showAlternatives: false
+            }).addTo(map);
+        }
+        function clearSearch() {
+            document.getElementById("search-start").value = "";
+            document.getElementById("search-end").value = "";
+            document.getElementById("suggestions-start").innerHTML = "";
+            document.getElementById("suggestions-end").innerHTML = "";
+
+            if (startMarker) map.removeLayer(startMarker);
+            if (endMarker) map.removeLayer(endMarker);
+            if (routingControl) map.removeControl(routingControl);
+
+            start = null;
+            end = null;
+            routingControl = null;
+            startMarker = null;
+            endMarker = null;
+            map.setView(brazosCenter, 12);
+        }
+
+        function findMyLocation() {
+            navigator.geolocation.getCurrentPosition(pos => {
+                start = [pos.coords.latitude, pos.coords.longitude];
+
+                if (startMarker) map.removeLayer(startMarker);
+
+                startMarker = L.marker(start, {
+                    icon: L.icon({
+                        iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+                        iconSize: [32, 32]
+                    })
+                }).addTo(map)
+                    .bindPopup("Your Location").openPopup();
+
+                document.getElementById("search-start").value = "Your Location";
+                map.setView(start, 14);
+            }, () => {
+                alert("Unable to detect your location.");
+            });
+        }
+
+        let selectMode = null; // 'start' or 'end'
+
+        // Function to set mode: start or end
+        function setSelectMode(mode) {
+            selectMode = mode;
+            alert(`Click on the map to set the ${mode} point.`);
+        }
+
+        // Handle map click
+        map.on('click', function (e) {
+            if (!selectMode) return;
+
+            const latlng = e.latlng;
+            if (selectMode === 'start') {
+                start = [latlng.lat, latlng.lng];
+                if (startMarker) map.removeLayer(startMarker);
+                startMarker = L.marker(start, {
+                    icon: L.icon({
+                        iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+                        iconSize: [32, 32]
+                    })
+                }).addTo(map)
+                    .bindPopup("Start Point").openPopup();
+                document.getElementById('search-start').value = `Lat: ${latlng.lat.toFixed(5)}, Lng: ${latlng.lng.toFixed(5)}`;
+            } else if (selectMode === 'end') {
+                end = [latlng.lat, latlng.lng];
+                if (endMarker) map.removeLayer(endMarker);
+                endMarker = L.marker(end, {
+                    icon: L.icon({
+                        iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                        iconSize: [32, 32]
+                    })
+                }).addTo(map)
+                    .bindPopup("Destination").openPopup();
+                document.getElementById('search-end').value = `Lat: ${latlng.lat.toFixed(5)}, Lng: ${latlng.lng.toFixed(5)}`;
+            }
+
+            selectMode = null; // Reset mode after selection
+        });
+
+        // Swap start and end
+        function swapPoints() {
+            if (!start || !end) {
+                alert("Both start and end points must be set to swap.");
+                return;
+            }
+
+            // Swap coordinates
+            [start, end] = [end, start];
+
+            // Swap input fields
+            const startInput = document.getElementById('search-start');
+            const endInput = document.getElementById('search-end');
+            [startInput.value, endInput.value] = [endInput.value, startInput.value];
+
+            // Swap markers
+            if (startMarker) map.removeLayer(startMarker);
+            if (endMarker) map.removeLayer(endMarker);
+
+            startMarker = L.marker(start, {
+                icon: L.icon({
+                    iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+                    iconSize: [32, 32]
+                })
+            }).addTo(map)
+                .bindPopup("Start Point").openPopup();
+
+            endMarker = L.marker(end, {
+                icon: L.icon({
+                    iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                    iconSize: [32, 32]
+                })
+            }).addTo(map)
+                .bindPopup("Destination").openPopup();
+
+            showRoute();
+        }
+
+    </script>
+
+</body>
+
+</html>

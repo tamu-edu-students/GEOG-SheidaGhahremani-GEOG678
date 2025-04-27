@@ -1,0 +1,389 @@
+[
+    {
+        "name": "H-E-B Pharmacy",
+        "latitude": 30.6126415,
+        "longitude": -96.3189077,
+        "address": "1900 Texas Ave S, College Station, TX 77840",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-693-1238",
+        "website": "https://www.heb.com/pharmacy/vaccinations"
+    },
+    {
+        "name": "H-E-B Pharmacy",
+        "latitude": 30.58331796,
+        "longitude": -96.32154316,
+        "address": "11675 Farm to Market Rd 2154, College Station, TX 77845",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-485-8111",
+        "website": "https://www.heb.com/pharmacy/vaccinations"
+    },
+    {
+        "name": "H-E-B Pharmacy",
+        "latitude": 30.64416157,
+        "longitude": -96.35045142,
+        "address": "725 E Villa Maria Rd Ste 1300, Bryan, TX 77802",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-822-1850",
+        "website": "https://www.heb.com/pharmacy/vaccinations"
+    },
+    {
+        "name": "H-E-B Pharmacy",
+        "latitude": 30.69024908,
+        "longitude": -96.37170965,
+        "address": "1609 N Texas Ave, Bryan, TX 77803",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-778-2074",
+        "website": "https://www.heb.com/pharmacy/vaccinations"
+    },
+    {
+        "name": "H-E-B Pharmacy",
+        "latitude": 30.56832499,
+        "longitude": -96.26124177,
+        "address": "949 William D. Fitch Pkwy, College Station, TX 77845",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-690-4690",
+        "website": "https://www.heb.com/pharmacy/vaccinations"
+    },
+    {
+        "name": "Walmart Pharmacy",
+        "latitude": 30.60838020724376,
+        "longitude": -96.29999813092341,
+        "address": "1815 Brothers Blvd, College Station, TX 77845",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-693-3841",
+        "website": "https://www.walmart.com/cp/flu-shots-immunizations/1228302?gclsrc=aw.ds&adid=22222222254457482312&wmlspartner=wmtlabs&wl0=&wl1=g&wl2=c&wl3=731373846186&wl4=dsa-1165794592784&wl5=9027902&wl6=&wl7=&wl8=&veh=sem&gad_source=1&gclid=Cj0KCQjw16O_BhDNARIsAC3i2GAy-DaEofa6Dt_KQiQrawBbqsMAwypVnOEQv1qS7LPO2EbCPvXzaTsaAquUEALw_wcB"
+    },
+    {
+        "name": "Walmart Pharmacy",
+        "latitude": 30.646123172904666,
+        "longitude": -96.38195222630748,
+        "address": "643 N Harvey Mitchell Pkwy, Bryan, TX 77807",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-599-9208",
+        "website": "https://www.walmart.com/cp/flu-shots-immunizations/1228302?gclsrc=aw.ds&adid=22222222254457482312&wmlspartner=wmtlabs&wl0=&wl1=g&wl2=c&wl3=731373846186&wl4=dsa-1165794592784&wl5=9027902&wl6=&wl7=&wl8=&veh=sem&gad_source=1&gclid=Cj0KCQjw16O_BhDNARIsAC3i2GAy-DaEofa6Dt_KQiQrawBbqsMAwypVnOEQv1qS7LPO2EbCPvXzaTsaAquUEALw_wcB"
+    },
+    {
+        "name": "Walmart Pharmacy",
+        "latitude": 30.67213843038496,
+        "longitude": -96.32767034452674,
+        "address": "2200 Briarcrest Dr, Bryan, TX 77802",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-776-0375",
+        "website": "https://www.walmart.com/cp/flu-shots-immunizations/1228302?gclsrc=aw.ds&adid=22222222254457482312&wmlspartner=wmtlabs&wl0=&wl1=g&wl2=c&wl3=731373846186&wl4=dsa-1165794592784&wl5=9027902&wl6=&wl7=&wl8=&veh=sem&gad_source=1&gclid=Cj0KCQjw16O_BhDNARIsAC3i2GAy-DaEofa6Dt_KQiQrawBbqsMAwypVnOEQv1qS7LPO2EbCPvXzaTsaAquUEALw_wcB"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.622604110975402,
+        "longitude": -96.3132516544004,
+        "address": "2322 Texas Ave S, College Station, TX 77840",
+        "hours": "7 AM - 11 PM",
+        "phone": "+1 979-696-5908",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.58425726192445,
+        "longitude": -96.28809039376374,
+        "address": "1751 Rock Prairie Rd, College Station, TX 77845",
+        "hours": "7 AM - 11 PM",
+        "phone": "+1 979-764-1805",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.65520846381941,
+        "longitude": -96.33769348252841,
+        "address": "3312 E 29th St, Bryan, TX 77802",
+        "hours": "12 AM - 12 AM",
+        "phone": "+1 979-776-9128",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.64458786453056,
+        "longitude": -96.35380970006752,
+        "address": "610 E Villa Maria Rd, Bryan, TX 77802",
+        "hours": "8 AM - 9 PM",
+        "phone": "+1 979-779-2006",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.558071217101137,
+        "longitude": -96.25843580006752,
+        "address": "998 William D. Fitch Pkwy, College Station, TX 77845",
+        "hours": "7 AM - 10 PM",
+        "phone": "+1 979-690-0523",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "Walgreens",
+        "latitude": 30.671541056679278,
+        "longitude": -96.3339500423957,
+        "address": "2350 Boonville Rd, Bryan, TX 77808",
+        "hours": "7 AM - 10 PM",
+        "phone": "+1 979-731-1401",
+        "website": "https://www.walgreens.com/findcare/schedule-vaccine"
+    },
+    {
+        "name": "CVS Pharmacy-Target",
+        "latitude": 30.66604984880898,
+        "longitude": -96.32165486826075,
+        "address": "3061 Wildflower Dr, Bryan, TX 77802",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-774-1481",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "CVS Pharmacy",
+        "latitude": 30.60855237026792,
+        "longitude": -96.30940124630077,
+        "address": "2411 Texas Ave S, College Station, TX 77840",
+        "hours": "8 AM - 12 AM",
+        "phone": "+1 979-693-8085",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "CVS Pharmacy",
+        "latitude": 30.62201158117061,
+        "longitude": -96.34228650820835,
+        "address": "717 University Dr #101, College Station, TX 77840",
+        "hours": "7 AM - 12 AM",
+        "phone": "+1 979-721-9125",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "CVS Pharmacy- Target",
+        "latitude": 30.610933402967735,
+        "longitude": -96.31513080026996,
+        "address": "2100 Texas Ave S, College Station, TX 77840",
+        "hours": "10 AM - 7 PM",
+        "phone": "+1 979-696-4368",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "CVS Pharmacy",
+        "latitude": 30.643797001315434,
+        "longitude": -96.3534757309572,
+        "address": "3000 S Texas Ave, Bryan, TX 77802",
+        "hours": "7 AM - 12 AM",
+        "phone": "+1 979-822-7344",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "CVS Pharmacy",
+        "latitude": 30.58447964627521,
+        "longitude": -96.28647930027002,
+        "address": "1800 Rock Prairie Rd, College Station, TX 77845",
+        "hours": "8 AM - 10 PM",
+        "phone": "+1 979-696-1075",
+        "website": "https://www.cvs.com/immunizations/get-vaccinated"
+    },
+    {
+        "name": "Sam's Club Pharmacy",
+        "latitude": 30.634704103821118,
+        "longitude": -96.30212754898379,
+        "address": "1405 Earl Rudder Fwy, College Station, TX 77845",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-696-0128",
+        "website": "https://www.samsclub.com/pharmacy"
+    },
+    {
+        "name": "University Health Services",
+        "latitude": 30.616483154960612,
+        "longitude": -96.34285951585048,
+        "address": "A.P. Beutel Health Center, 311 Houston St Bldg. 520, College Station, TX 77843",
+        "hours": "8 AM - 5 PM",
+        "phone": "+1 979-458-4584",
+        "website": "https://uhs.tamu.edu/appointments/index.html"
+    },
+    {
+        "name": "Brookshire Brothers",
+        "latitude": 30.62305959014924,
+        "longitude": -96.34591281116374,
+        "address": "455 George Bush Dr W, College Station, TX 77840",
+        "hours": "8:30 AM - 6:30 PM",
+        "phone": "+1 979-314-5009",
+        "website": "https://www.brookshirebrothers.com/pharmacy/immunizations"
+    },
+    {
+        "name": "Goldstar LTC Pharmacy",
+        "latitude": 30.64523793760762,
+        "longitude": -96.3281608231294,
+        "address": "4500 Carter Creek Pkwy, Bryan, TX 77802",
+        "hours": "9 AM - 6 PM",
+        "phone": "+1 979-690-9112",
+        "website": "https://www.goldstarrx.com/pharmacy-our-services/immunizations"
+    },
+    {
+        "name": "IV RX Pharmacy",
+        "latitude": 30.651406606839263,
+        "longitude": -96.2975349003563,
+        "address": "3201 University Dr E # 145, Bryan, TX 77802",
+        "hours": "9 AM - 3:30 PM",
+        "phone": "+1 281-302-6050",
+        "website": "https://ivrxpharmacy.com/"
+    },
+    {
+        "name": "Healthpoint Pharmacy",
+        "latitude": 30.63975284637582,
+        "longitude": -96.34956263972713,
+        "address": "3400 S Texas Ave Building A, Suite 300, Bryan, TX 77802",
+        "hours": "8 AM - 5:45 PM",
+        "phone": "+1 979-595-1755",
+        "website": "https://www.healthpoint-tx.com/services/healthpoint-pharmacy/"
+    },
+    {
+        "name": "Healthpoint Clinic",
+        "latitude": 30.63905123641118,
+        "longitude": -96.3502969154111,
+        "address": "3370 S Texas Ave B, Bryan, TX 77802",
+        "hours": "8 AM - 6 PM",
+        "phone": "+1 979-595-1700",
+        "website": "https://www.healthpoint-tx.com/services/healthpoint-pharmacy/"
+    },
+    {
+        "name": "Chi Saint Joseph Internal Medicine",
+        "latitude": 30.58147137844191,
+        "longitude": -96.28996529316561,
+        "address": "1602 Rock Prairie Rd #4880, College Station, TX 77845",
+        "hours": "7 AM - 9 PM",
+        "phone": "+1 713-475-6617",
+        "website": "https://www.chisaintjosephhealth.org/find-a-provider"
+    },
+    {
+        "name": "Kroger Pharmacy",
+        "latitude": 30.582292171977592,
+        "longitude": -96.28571367299975,
+        "address": "3535 Longmire Dr, College Station, TX 77845",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-485-8813",
+        "website": "https://www.kroger.com/health/vaccines"
+    },
+    {
+        "name": "Kroger Pharmacy",
+        "latitude": 30.680832316163453,
+        "longitude": -96.33706484645381,
+        "address": "2303 Boonville Rd, Bryan, TX 77808",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-774-8377",
+        "website": "https://www.kroger.com/rx/pharmacy/details/034/00383?cid=loc_03400383P_gmb"
+    },
+    {
+        "name": "Farmacia Central RX- Clinica Hispana",
+        "latitude": 30.653822779877608,
+        "longitude": -96.33652657825044,
+        "address": "3410 E 29th St, Bryan, TX 77802",
+        "hours": "9 AM - 4 PM",
+        "phone": "+1 979-268-5544",
+        "website": "https://www.farmaciacentralrx.com/retail-pharmacy-services/immunizations"
+    },
+    {
+        "name": "Baylor Scott & White Pharmacy",
+        "latitude": 30.586648020665855,
+        "longitude": -96.27976721698433,
+        "address": "700 Scott & White Dr, College Station, TX 77845",
+        "hours": "8 AM - 6 PM",
+        "phone": "+1 979-207-0120",
+        "website": "https://www.bswhealth.com/?utm_source=google&utm_medium=cpc&utm_campaign=99-ALL-878650-BrdKwrds23-945080977-google-dmt-search-brd-schedule&utm_term=baylor%20scott&utm_content=002-rsa-bswh&utm_adgroup=&gad_source=1&gclid=Cj0KCQjw16O_BhDNARIsAC3i2GC51C51yi6wx3eu8g4ZhnSHIKlMQ7rNlnKKjeNBYJR5gr70UxW6wQoaAkfjEALw_wcB"
+    },
+    {
+        "name": "Baylor Scott & White Pharmacy",
+        "latitude": 30.56262327954923,
+        "longitude": -96.26583841363646,
+        "address": "1296 Arrington Rd #200, College Station, TX 77845",
+        "hours": "8 AM - 8 PM",
+        "phone": "+1 979-207-6333",
+        "website": "https://www.bswhealth.com/locations/pharmacy/college-station-276?utm_source=pg-google&utm_medium=organic&utm_campaign=pg-listings"
+    },
+    {
+        "name": "Asclepius RX",
+        "latitude": 30.647386182934788,
+        "longitude": -96.35062216174751,
+        "address": "818 E Villa Maria Rd, Bryan, TX 77802",
+        "hours": "9 AM - 5 PM",
+        "phone": "+1 832-996-1224",
+        "website": "https://www.asclepiusrx.com/"
+    },
+    {
+        "name": "Village Foods & Pharmacy",
+        "latitude": 30.655914489799446,
+        "longitude": -96.34203280827454,
+        "address": "3030 E 29th St #100, Bryan, TX 77802",
+        "hours": "9 AM - 7 PM",
+        "phone": "+1 979-846-8199",
+        "website": "https://www.villagefoodsrx.com/services"
+    },
+    {
+        "name": "BCS Pharmacy",
+        "latitude": 30.65532651695791,
+        "longitude": -96.34834716247518,
+        "address": "2601 Osler Blvd, Bryan, TX 77802",
+        "hours": "8:30 AM - 6:30 PM",
+        "phone": "+1 979-485-9123",
+        "website": "https://bcspharmacy.com/"
+    },
+    {
+        "name": "Cancer Clinic Pharmacy",
+        "latitude": 30.656674011923677,
+        "longitude": -96.34814331459309,
+        "address": "2215 E Villa Maria Rd Suite 120, Bryan, TX 77802",
+        "hours": "Call for Hours",
+        "phone": "+1 979-977-0193",
+        "website": "https://www.cancerclinic.com/"
+    },
+    {
+        "name": "Nova Medical Center",
+        "latitude": 30.776298686346358,
+        "longitude": -96.37656758949639,
+        "address": "2011 S Texas Ave, Bryan, TX 77802",
+        "hours": "8:30 AM - 6 PM",
+        "phone": "+1 979-599-5900",
+        "website": "https://n-o-v-a.com/locations/bryan-college-station/"
+    },
+    {
+        "name": "Brazos County Health District",
+        "latitude": 30.674830465376818,
+        "longitude": -96.36939032569992,
+        "address": "201 N Texas Ave, Bryan, TX 77803",
+        "hours": "8 AM - 4 PM",
+        "phone": "+1 979-361-4440",
+        "website": "https://brazoshealth.org/"
+    },
+    {
+        "name": "College Of Medicine Rangel College Of Pharmacy",
+        "latitude": 30.611717438092807,
+        "longitude": -96.3523718815609,
+        "address": "159 Reynolds Medical Building, 1114 TAMU, College Station, TX 77845",
+        "hours": "8 AM - 4 PM",
+        "phone": "+1 979-436-0561",
+        "website": "https://pharmacy.tamu.edu/about/contact.html/"
+    },
+    {
+        "name": "Costco Pharmacy",
+        "latitude": 30.567721540801422,
+        "longitude": -96.26368664420967,
+        "address": "4321 Texas 6 Frontage Rd, College Station, TX 77845",
+        "hours": "10 AM - 7 PM",
+        "phone": "+1 979 321-6560",
+        "website": "https://rx.costco.com/immunizationScheduler/?location=costcorx-01614"
+    },
+    {
+        "name": "GoldStar Pharmacy",
+        "latitude": 30.562920625771692,
+        "longitude": -96.25938051945744,
+        "address": "4421 Texas 6 Frontage Rd #300, College Station, TX 77845",
+        "hours": "9 AM - 6 PM",
+        "phone": "+1 979 330 5216",
+        "website": "https://www.goldstarrx.com/"
+    },
+    {
+        "name": "GoldStar Pharmacy",
+        "latitude": 30.562920625771692,
+        "longitude": -96.25938051945744,
+        "address": "4421 Texas 6 Frontage Rd #300, College Station, TX 77845",
+        "hours": "9 AM - 6 PM",
+        "phone": "+1 979 330 5216",
+        "website": "https://www.goldstarrx.com/"
+    }
+]

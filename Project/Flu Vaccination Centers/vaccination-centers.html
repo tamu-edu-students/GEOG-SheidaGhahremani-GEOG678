@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flu Vaccination Locator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="MainStyle.css">
+
+
+    <style>
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 30%;
+            padding: 20px;
+            overflow-y: scroll;
+            border-right: 2px solid #ddd;
+        }
+
+        .sidebar h2 {
+            color: #500000;
+        }
+
+        #centerList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #centerList li {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+
+        #centerList li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .map-section {
+            width: 70%;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="HomePage.html">
+            <img src="images/tamu-logo.png" alt="Texas A&M Logo" class="logo">
+        </a>
+        <a href="Home.html">Home</a>
+        <a href="vaccination-centers.html" class="active">Vaccination Centers</a>
+        <a href="direction.html">Direction</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="people.html">People</a>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <h2>Vaccination Centers</h2>
+            <ul id="centerList"></ul>
+        </div>
+        <div class="map-section">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+    <script>
+
+
+        const map = L.map('map').setView([30.61, -96.34], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+
+        fetch("Brazos_boundary.geojson")
+            .then(response => response.json())
+            .then(data => {
+                if (!data || !data.features) {
+                    console.error("Invalid GeoJSON structure:", data);
+                    return;
+                }
+                L.geoJSON(data, {
+                    style: {
+                        color: "Green",
+                        weight: 3,
+                        opacity: 1,
+                        fillColor: "Lightgreen",
+                        fillOpacity: 0.1
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error("Error loading GeoJSON:", error));
+
+
+
+        let centers = [];
+        let currentMarker = null;
+
+        // Load JSON data from file
+        fetch('vaccinationcenters.json')
+            .then(response => response.json())
+            .then(data => {
+                centers = data;
+                const list = document.getElementById('centerList');
+
+                const customIcon = L.icon({
+                    iconUrl: 'images/Flu vaccination center locator symbol with red color and injection symbol, no background.png',
+                    iconSize: [60, 70], // size of the icon [width, height]
+                    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+                    popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+                });
+
+
+
+                centers.forEach((center, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${center.name}</strong><br><small>${center.address}</small>`;
+                    li.addEventListener('click', () => {
+                        map.setView([center.latitude, center.longitude], 15);
+
+
+
+                        // Create a marker with the custom icon
+
+                        if (currentMarker) {
+                            map.removeLayer(currentMarker);
+                        }
+                        currentMarker = L.marker([center.latitude, center.longitude], { icon: customIcon }).addTo(map);
+
+
+                        // Bind and open popup on the marker
+                        currentMarker.bindPopup(`
+        <b>${center.name}</b><br>
+        ${center.address}<br>
+        Phone: <a href="tel:${center.phone}">${center.phone}</a><br>
+        Hours: ${center.hours}<br>Website: <a href="${center.website}" target="_blank">Website</a><br>
+    `).openPopup();
+                    });
+
+                    list.appendChild(li);
+                });
+            })
+
+
+
+            .catch(err => console.error("Error loading centers:", err));
+
+    </script>
+
+</body>
+
+</html>
